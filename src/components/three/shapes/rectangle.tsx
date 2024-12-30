@@ -3,6 +3,7 @@ import * as THREE from "three";
 import React from "react";
 import EditableText from "../ui/editable-text";
 import { WiizflowNodes } from "../../wiizflow-nodes";
+import NodeWrapper from "./node-wrapper";
 
 interface RectangleProps extends WiizflowNodes {
   height?: number;
@@ -19,12 +20,16 @@ const Rectangle: React.FC<JSX.IntrinsicElements["group"] & RectangleProps> = ({
   return (
     <group rotation={[-Math.PI / 2, 0, Math.PI / 2]} {...props}>
       <Html transform>
-        <div
-          className={`flex flex-col border-[2px] border-black p-8 gap-3 items-center justify-start cursor-pointer`}
-        >
-          <h1><EditableText text={title}/></h1>
-          <EditableText text={description} />
-        </div>
+        <NodeWrapper>
+          <div
+            className={`flex flex-col border-[2px] border-black rounded-md p-8 gap-3 items-center justify-start`}
+          >
+            <h1>
+              <EditableText text={title} />
+            </h1>
+            <EditableText text={description} />
+          </div>
+        </NodeWrapper>
       </Html>
     </group>
   );

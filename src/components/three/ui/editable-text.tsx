@@ -11,14 +11,14 @@ const EditableText: React.FC<EditableTextProps> = ({ text = "" }) => {
   return !isEdit ? (
     <p
       onDoubleClick={() => setIsEdit(true)}
-      className="hover: cursor-pointer hover:border hover:border-black/30 p-2 rounded-lg"
+      className="hover: cursor-pointer hover:border hover:bg-black/5 hover:border-black/30 p-2 rounded-lg"
     >
       {editableText}
     </p>
   ) : (
     <textarea
       value={editableText}
-      className="p-2 bg-transparent w-full border border-black rounded-lg"
+      className="p-2 bg-transparent  w-full border border-black rounded-lg"
       onChange={(e) => setEditableText(e.target.value)}
       onBlur={() => setIsEdit(false)}
     />
