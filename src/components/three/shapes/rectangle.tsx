@@ -1,6 +1,6 @@
 import { Html, Line } from "@react-three/drei";
 import * as THREE from "three";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import EditableText from "../ui/editable-text";
 import { WiizflowNodes } from "../../wiizflow-nodes";
 
