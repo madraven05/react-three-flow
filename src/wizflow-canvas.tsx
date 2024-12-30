@@ -10,7 +10,7 @@ const WizFlowCanvas = () => {
         <ambientLight />
         <directionalLight />
         <mesh rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[100, 100]} />
+          <planeGeometry args={[200, 200]} />
           <meshStandardMaterial />
         </mesh>
 
