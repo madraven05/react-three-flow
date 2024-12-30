@@ -1,7 +1,9 @@
 import { Html } from "@react-three/drei";
 import React, { useMemo } from "react";
+import { WiizflowNodes } from "../../wiizflow-nodes";
+import EditableText from "../ui/editable-text";
 
-interface CircleProps {
+interface CircleProps extends WiizflowNodes {
   radius?: number;
   segments?: number;
 }
@@ -9,6 +11,8 @@ interface CircleProps {
 const Circle: React.FC<JSX.IntrinsicElements["group"] & CircleProps> = ({
   radius = 6,
   segments = 64,
+  title,
+  description,
   ...props
 }) => {
   const points = useMemo(() => {
@@ -35,14 +39,14 @@ const Circle: React.FC<JSX.IntrinsicElements["group"] & CircleProps> = ({
       </lineLoop>
 
       <Html transform>
-        <div style={{width: `${radius * 80}px`, height: `${radius * 80}px`}} className={`flex flex-col gap-5 p-14 text-center items-center justify-center rounded-full`}>
-          <h1>Title 2</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim qui
-            magnam neque dolorem autem officia incidunt facilis quae debitis
-            nesciunt! Dolorem soluta optio veritatis recusandae accusamus
-            eligendi commodi atque maxime?
-          </p>
+        <div
+          style={{ width: `${radius * 80}px`, height: `${radius * 80}px` }}
+          className={`flex flex-col gap-5 p-14 text-center items-center justify-center rounded-full`}
+        >
+          <h1>
+            <EditableText text={title} />
+          </h1>
+          <EditableText text={description} />
         </div>
       </Html>
     </group>
