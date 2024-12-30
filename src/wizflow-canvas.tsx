@@ -1,4 +1,4 @@
-import { Environment, Html, OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Rectangle from "./components/shapes/rectangle";
 import Circle from "./components/shapes/circle";

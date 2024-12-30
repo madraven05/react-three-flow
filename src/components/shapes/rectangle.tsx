@@ -1,6 +1,6 @@
-import { Html, Line, Shape } from "@react-three/drei";
+import { Html, Line } from "@react-three/drei";
 import * as THREE from "three";
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface RectangleProps {
   height?: number;
