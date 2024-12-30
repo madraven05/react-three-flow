@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Rectangle from "./components/shapes/rectangle";
-import Circle from "./components/shapes/circle";
+import Rectangle from "./components/three/shapes/rectangle";
+import Circle from "./components/three/shapes/circle";
 
 const WizFlowCanvas = () => {
   return (
@@ -17,11 +17,13 @@ const WizFlowCanvas = () => {
         <Rectangle
           position={[3, 0, 5]}
           title="Title 1"
-          height={4}
+          height={5}
           description="This is a description of the text box"
         />
 
         <Circle
+          title="Circle Node"
+          description="This is a circle node"
           position={[-7, 0, 5]}
         />
         <OrbitControls />
