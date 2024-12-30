@@ -1,4 +1,4 @@
-import { BiRectangle, BiRedo, BiUndo } from "react-icons/bi";
+import { BiRectangle } from "react-icons/bi";
 import { FaRegCircle } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { GrRedo, GrUndo } from "react-icons/gr";
