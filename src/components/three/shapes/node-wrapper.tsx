@@ -1,25 +1,77 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 
 interface NodeWrapperProps {
   children: ReactNode;
+  onGrab?: () => void;
+  onRelease?: () => void;
 }
 
-const NodeWrapper: React.FC<NodeWrapperProps> = ({ children }) => {
+const NodeWrapper: React.FC<NodeWrapperProps> = ({
+  children,
+  onGrab,
+  onRelease,
+}) => {
   const [isHover, setIsHover] = useState(false);
+  const [isGrabbed, setIsGrabbed] = useState(false);
+
+  const clickCountRef = useRef(0);
+  const clickTimeoutRef = useRef<number | null>(null);
+  const grabTimeoutRef = useRef<number | null>(null);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    e.preventDefault();
+    clickCountRef.current += 1;
+
+    if (clickCountRef.current == 1) {
+      console.log(clickCountRef.current);
+      clickTimeoutRef.current = setTimeout(() => {
+        clickCountRef.current = 0;
+      }, 300);
+    } else if (clickCountRef.current == 2) {
+      if (clickTimeoutRef.current) {
+        clearTimeout(clickTimeoutRef.current);
+        clickTimeoutRef.current = null;
+      }
+
+      window.addEventListener("pointerup", handlePointerUp);
+
+      grabTimeoutRef.current = setTimeout(() => {
+        setIsGrabbed(true);
+        document.body.style.cursor = "grabbing";
+        if (onGrab) {
+          onGrab();
+        }
+      }, 300);
+    }
+  };
+
+  const handlePointerUp = () => {
+    if (grabTimeoutRef.current) {
+      clearTimeout(grabTimeoutRef.current);
+      grabTimeoutRef.current = null;
+    }
+
+    if (isGrabbed) {
+      setIsGrabbed(false);
+    }
+
+    if (onRelease) {
+      onRelease();
+    }
+
+    document.body.style.cursor = "auto";
+    clickCountRef.current = 0;
+    window.removeEventListener("pointerup", handlePointerUp);
+  };
+
   return (
     <div
-      onPointerOver={() => setIsHover(true)}
-      onPointerLeave={() => setIsHover(false)}
-      // onDoubleClick={() => canvasOperationsContext?.setIsNodeGrabbed(true)}
-      className="flex flex-col items-center p-6 hover:cursor-grab"
+      onPointerDown={handlePointerDown}
+      className={`flex flex-col items-center p-6 hover:${
+        isGrabbed ? `cursor-grabbing` : `cursor-grab`
+      } `}
     >
       {children}
-      <div className={`${isHover ? `flex` : 'hidden'}`}>
-        <button className="absolute hover:cursor-crosshair top-0 w-4 h-4 bg-blue-700/60 hover:outline hover:outline-white rounded-full" />
-        <button className="absolute hover:cursor-crosshair left-0 top-1/2 w-4 h-4 bg-blue-700/60 hover:outline hover:outline-white rounded-full" />
-        <button className="absolute hover:cursor-crosshair right-0 top-1/2 w-4 h-4 bg-blue-700/60 hover:outline hover:outline-white rounded-full" />
-        <button className="absolute hover:cursor-crosshair bottom-0 w-4 h-4 bg-blue-700/60 hover:outline hover:outline-white rounded-full" />
-      </div>
     </div>
   );
 };

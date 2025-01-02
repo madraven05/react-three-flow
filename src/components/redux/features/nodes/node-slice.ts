@@ -17,6 +17,20 @@ const initialState: ReactThreeFlowNode[] = [
     rotation: [-Math.PI / 2, 0, Math.PI / 2],
     type: "rectangle",
   },
+
+  {
+    id: generateUUID(),
+    data: {
+      label: "Hey this is node 2 from state",
+      color: "black",
+      type: "",
+    },
+    height: 242,
+    width: 242,
+    position: [3, 0, 8],
+    rotation: [-Math.PI / 2, 0, Math.PI / 2],
+    type: "rectangle",
+  },
 ];
 
 const nodesSlice = createSlice({

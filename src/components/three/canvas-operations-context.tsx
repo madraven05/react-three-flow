@@ -6,9 +6,15 @@ import {
   useState,
 } from "react";
 
+type MoveNodeOperation = {
+  active: boolean;
+  nodeId?: string;
+  initialPos?: [number, number, number];
+};
+
 interface CanvasOperationsContextType {
-  isNodeGrabbed: boolean;
-  setIsNodeGrabbed: Dispatch<SetStateAction<boolean>>;
+  moveNodeOperation: MoveNodeOperation;
+  setMoveNodeOperation: Dispatch<SetStateAction<MoveNodeOperation>>;
   freezeOrbitControls: boolean;
   setFreezeOrbitControls: Dispatch<SetStateAction<boolean>>;
 }
@@ -24,12 +30,21 @@ interface CanvasOperationsProviderProps {
 export const CanvasOperationsProvider: React.FC<
   CanvasOperationsProviderProps
 > = ({ children }) => {
-  const [isNodeGrabbed, setIsNodeGrabbed] = useState(false);
+  const [moveNodeOperation, setMoveNodeOperation] = useState<MoveNodeOperation>(
+    {
+      active: false,
+    }
+  );
   const [freezeOrbitControls, setFreezeOrbitControls] = useState(false);
 
   return (
     <CanvasOperationsContext.Provider
-      value={{ isNodeGrabbed, setIsNodeGrabbed, freezeOrbitControls, setFreezeOrbitControls }}
+      value={{
+        moveNodeOperation,
+        setMoveNodeOperation,
+        freezeOrbitControls,
+        setFreezeOrbitControls,
+      }}
     >
       {children}
     </CanvasOperationsContext.Provider>
