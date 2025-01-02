@@ -4,9 +4,12 @@ import Rectangle from "./components/three/shapes/rectangle";
 import Circle from "./components/three/shapes/circle";
 import { useAppSelector } from "./components/hooks/use-app-dispatch";
 import { generateUUID } from "three/src/math/MathUtils.js";
+import { useContext } from "react";
+import { CanvasOperationsContext } from "./components/three/canvas-operations-context";
 
 const WizFlowCanvas: React.FC = () => {
   const nodes = useAppSelector((state) => state.nodes);
+  const canvasOperations = useContext(CanvasOperationsContext)
 
   return (
     <div className="absolute top-0 left-0 w-full h-screen bg-black/60">
