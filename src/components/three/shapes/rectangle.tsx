@@ -1,20 +1,21 @@
 import { Html } from "@react-three/drei";
 import React, { useContext, useEffect } from "react";
 import EditableText from "../ui/editable-text";
-import { WiizflowNodes } from "../../wiizflow-nodes";
 import NodeWrapper from "./node-wrapper";
 import { CanvasOperationsContext } from "../canvas-operations-context";
+import { ReactThreeFlowNode } from "../../../models/react-three-flow-node";
 
-interface RectangleProps extends WiizflowNodes {
-  height?: number;
-  width?: number;
+interface RectangleProps extends ReactThreeFlowNode {
+
 }
 
-const Rectangle: React.FC<JSX.IntrinsicElements["group"] & RectangleProps> = ({
-  width = 10,
-  height = 8,
-  title,
-  description,
+const Rectangle: React.FC<RectangleProps> = ({
+  data,
+  id,
+  type,
+  height,
+  width,
+  rotation = [-Math.PI / 2, 0, Math.PI / 2],
   ...props
 }) => {
   const canvasOperations = useContext(CanvasOperationsContext);
@@ -30,17 +31,14 @@ const Rectangle: React.FC<JSX.IntrinsicElements["group"] & RectangleProps> = ({
   }, [canvasOperations])
 
   return (
-    <group rotation={[-Math.PI / 2, 0, Math.PI / 2]} {...props}>
+    <group rotation={rotation} key={id} {...props}>
       <Html transform>
         <NodeWrapper>
           <div
             onDoubleClick={() => canvasOperations.setIsNodeGrabbed(true)}
             className={`flex flex-col border-[2px] border-black rounded-md p-8 gap-3 items-center justify-start`}
           >
-            <h1>
-              <EditableText text={title} />
-            </h1>
-            <EditableText text={description} />
+            <EditableText text={data.label} />
           </div>
         </NodeWrapper>
       </Html>
