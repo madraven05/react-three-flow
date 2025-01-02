@@ -4,7 +4,6 @@ import { ThreeEvent } from "@react-three/fiber";
 import { useAppDispatch } from "../hooks/use-app-dispatch";
 import { ReactThreeFlowNode } from "../../models/react-three-flow-node";
 import { updateNodeProperties } from "../redux/features/nodes/node-action";
-import { DoubleSide } from "three";
 
 const GridPlane: React.FC = () => {
   const canvasOperations = useContext(CanvasOperationsContext);

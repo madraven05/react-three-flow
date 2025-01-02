@@ -1,5 +1,5 @@
 import { Html } from "@react-three/drei";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import EditableText from "../ui/editable-text";
 import NodeWrapper from "./node-wrapper";
 import { CanvasOperationsContext } from "../canvas-operations-context";

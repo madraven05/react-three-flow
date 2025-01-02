@@ -11,7 +11,6 @@ const NodeWrapper: React.FC<NodeWrapperProps> = ({
   onGrab,
   onRelease,
 }) => {
-  const [isHover, setIsHover] = useState(false);
   const [isGrabbed, setIsGrabbed] = useState(false);
 
   const clickCountRef = useRef(0);
