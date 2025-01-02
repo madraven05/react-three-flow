@@ -4,6 +4,7 @@
 
 body {
   @apply p-5;
+  @apply text-lg;
 }
 
 h1 {
