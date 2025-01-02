@@ -6,11 +6,11 @@ interface NodeWrapperProps {
 
 const NodeWrapper: React.FC<NodeWrapperProps> = ({ children }) => {
   const [isHover, setIsHover] = useState(false);
-
   return (
     <div
       onPointerOver={() => setIsHover(true)}
       onPointerLeave={() => setIsHover(false)}
+      // onDoubleClick={() => canvasOperationsContext?.setIsNodeGrabbed(true)}
       className="flex flex-col items-center p-6 hover:cursor-grab"
     >
       {children}
