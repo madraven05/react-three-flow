@@ -2,8 +2,12 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Rectangle from "./components/three/shapes/rectangle";
 import Circle from "./components/three/shapes/circle";
+import { useAppSelector } from "./components/hooks/use-app-dispatch";
+import { generateUUID } from "three/src/math/MathUtils.js";
 
-const WizFlowCanvas = () => {
+const WizFlowCanvas: React.FC = () => {
+  const nodes = useAppSelector((state) => state.nodes);
+
   return (
     <div className="absolute top-0 left-0 w-full h-screen bg-black/60">
       <Canvas camera={{ position: [10, 10, 10] }}>
@@ -14,11 +18,16 @@ const WizFlowCanvas = () => {
           <meshStandardMaterial />
         </mesh>
 
+        {nodes.map((nodeProps, idx) => (
+          <Rectangle key={idx} {...nodeProps} />
+        ))}
+
         <Rectangle
+          id={generateUUID()}
+          rotation={[0,0,0]}
+          type="rectangle"
           position={[3, 0, 5]}
-          title="Title 1"
-          height={5}
-          description="This is a description of the text box"
+          data={{ label: "this is not from the state" }}
         />
 
         <Circle
