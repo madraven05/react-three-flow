@@ -24,14 +24,14 @@ const CanvasMenu: React.FC = () => {
   return (
     <Menu>
       <MenuButton
-        className={`hover:cursor-pointer hover:bg-white/10 text-xl text-white p-3 rounded-md border border-white/10`}
+        className={`hover:cursor-pointer hover:bg-black/10 text-xl p-3 rounded-md border border-black/10`}
       >
         <MdMenu />
       </MenuButton>
       <MenuItems
         transition
         anchor="bottom start"
-        className="origin-top-right flex flex-col items-start w-52 z-30 rounded-sm border border-white/5 bg-black/50 backdrop-blur-md p-4 gap-2 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+        className="origin-top-right flex flex-col items-start w-52 z-30 rounded-sm border-2 border-black/40 mt-2 bg-white/10 backdrop-blur-md p-4 gap-2 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
       >
         {menuElements.map((el, id) => (
           <MenuItem key={id}>
