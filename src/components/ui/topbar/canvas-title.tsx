@@ -8,7 +8,7 @@ const CanvasTitle: React.FC = () => {
       placeholder="Enter Workspace Title"
       value={title}
       onChange={(e) => setTitle(e.target.value)}
-      className="p-2 rounded-md border border-white/40 bg-transparent text-white"
+      className="p-2 rounded-md border border-black/40 bg-transparent text-gray-700"
     />
   );
 };

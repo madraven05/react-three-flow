@@ -13,7 +13,7 @@ const WizFlowCanvas: React.FC = () => {
   const canvasOperations = useContext(CanvasOperationsContext);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-screen bg-black/60">
+    <div className="absolute top-0 left-0 w-full h- bg-black/10">
       <Canvas camera={{ position: [10, 20, -10] }}>
         <ambientLight />
         <directionalLight />
